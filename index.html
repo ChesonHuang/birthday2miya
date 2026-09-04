@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#2a1624" />
+  <meta property="og:title" content="米娅，有一封信给你" />
+  <meta property="og:description" content="农历八月初一 · 请点开" />
+  <title>米娅，有一封信给你</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="phase-letter">
+  <div id="app">
+    <canvas id="stars" aria-hidden="true"></canvas>
+    <div id="moon" aria-hidden="true">
+      <svg viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="moonGlow" cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#fff8fb" />
+            <stop offset="38%" stop-color="#ffe4ef" />
+            <stop offset="72%" stop-color="#f7c4d4" />
+            <stop offset="100%" stop-color="#e8a0b8" />
+          </radialGradient>
+          <filter id="moonSoft">
+            <feGaussianBlur stdDeviation="0.6" />
+          </filter>
+        </defs>
+        <circle cx="100" cy="100" r="88" fill="url(#moonGlow)" />
+        <ellipse cx="72" cy="78" rx="16" ry="12" fill="#f3c5d4" opacity=".28" />
+        <ellipse cx="118" cy="108" rx="22" ry="16" fill="#e8a8bc" opacity=".18" />
+        <ellipse cx="86" cy="128" rx="10" ry="8" fill="#de90aa" opacity=".2" />
+      </svg>
+    </div>
+    <div id="petals" aria-hidden="true"></div>
+    <canvas id="fx" aria-hidden="true"></canvas>
+
+    <section id="scene-letter" class="scene active" aria-hidden="false">
+      <p class="whisper">有一封信，只写给你</p>
+      <button type="button" id="envelope" class="envelope" aria-label="打开信封">
+        <span class="env-bow" aria-hidden="true"></span>
+        <span class="envelope-body"></span>
+        <span class="envelope-letter"></span>
+        <span class="envelope-flap"></span>
+        <span class="envelope-pocket"></span>
+        <span class="seal" aria-hidden="true">
+          <svg class="seal-dora" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="31" fill="#00a0e9" />
+            <ellipse cx="32" cy="39" rx="24" ry="19.5" fill="#fff" />
+            <ellipse cx="24.5" cy="18" rx="8.2" ry="10.2" fill="#fff" stroke="#1c1c1c" stroke-width="1.15" />
+            <ellipse cx="39.5" cy="18" rx="8.2" ry="10.2" fill="#fff" stroke="#1c1c1c" stroke-width="1.15" />
+            <circle cx="27.2" cy="20.5" r="3.1" fill="#1c1c1c" />
+            <circle cx="36.8" cy="20.5" r="3.1" fill="#1c1c1c" />
+            <circle cx="28.2" cy="19.4" r="1.05" fill="#fff" />
+            <circle cx="37.8" cy="19.4" r="1.05" fill="#fff" />
+            <circle cx="32" cy="28.5" r="4.4" fill="#e60012" />
+            <ellipse cx="30.8" cy="27.1" rx="1.35" ry="1" fill="#fff" opacity=".85" />
+            <path d="M32 33v11.5" stroke="#1c1c1c" stroke-width="1.15" stroke-linecap="round" />
+            <path d="M20 41q12 12 24 0" fill="none" stroke="#1c1c1c" stroke-width="1.35" stroke-linecap="round" />
+            <path d="M10 33h12.5M8.5 39h14M12 27h10.5M41.5 33H54M41.5 39H55.5M41.5 27H52" stroke="#1c1c1c" stroke-width="1.1" stroke-linecap="round" />
+          </svg>
+        </span>
+      </button>
+      <p class="hint" id="letter-hint">点开这颗纽扣</p>
+    </section>
+
+    <section id="scene-reveal" class="scene" aria-hidden="true">
+      <div class="reveal-copy">
+        <p class="reveal-date">农历八月初一</p>
+        <p class="reveal-meta">丙午年 · 桂月 · 九月十一</p>
+        <h1 class="reveal-name">米娅</h1>
+        <p class="reveal-poem">今天，月亮记得你的名字</p>
+      </div>
+      <button type="button" class="ghost-btn" id="to-cake">轻轻往下走</button>
+    </section>
+
+    <section id="scene-cake" class="scene" aria-hidden="true">
+      <p class="cake-kicker">许一个只属于你的愿</p>
+      <h2 class="cake-title">吹灭蜡烛</h2>
+      <div class="stage">
+        <div class="cake" id="cake">
+          <div class="cake-bow" aria-hidden="true"></div>
+          <div class="candle-glow"></div>
+          <div class="candles" id="candles"></div>
+          <div class="frost frost-top">
+            <i></i><i></i><i></i>
+          </div>
+          <div class="tier tier-top"></div>
+          <div class="frost frost-mid">
+            <i></i><i></i><i></i><i></i>
+          </div>
+          <div class="tier tier-mid"></div>
+          <div class="frost frost-base">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="tier tier-base"></div>
+          <div class="beads" aria-hidden="true"></div>
+          <div class="berries" aria-hidden="true">
+            <span class="berry" style="left:48px;bottom:132px"></span>
+            <span class="berry" style="left:118px;bottom:86px"></span>
+            <span class="berry" style="left:78px;bottom:44px"></span>
+          </div>
+          <div class="plate"></div>
+        </div>
+      </div>
+      <button type="button" class="wish-btn" id="blow-btn">吹气许愿</button>
+    </section>
+
+    <section id="scene-wish" class="scene" aria-hidden="true">
+      <div class="bless-ring" id="bless-ring">
+        <span class="bless" data-i="0">吉祥</span>
+        <span class="bless" data-i="1">安康</span>
+        <span class="bless" data-i="2">顺遂</span>
+        <span class="bless" data-i="3">喜乐</span>
+      </div>
+      <p class="wish-line">愿你所求，都有回音</p>
+      <button type="button" class="ghost-btn" id="to-finale">读完这封信</button>
+    </section>
+
+    <section id="scene-finale" class="scene" aria-hidden="true">
+      <article class="letter-card" id="letter-card">
+        <p class="card-seal-word">♡ 桂月生辰 ♡</p>
+        <h2>米娅：</h2>
+        <p>农历八月初一，桂花未尽，月将圆。</p>
+        <p>这是专属于你的日子。</p>
+        <p>愿你<strong>吉祥</strong>，所遇皆温柔；</p>
+        <p>愿你<strong>安康</strong>，身体被好好照顾；</p>
+        <p>愿你<strong>顺遂</strong>，心事都有去处；</p>
+        <p>愿你<strong>喜乐</strong>，被喜欢的事慢慢填满。</p>
+        <p class="card-close">生日快乐。<br />愿你被世界温柔以待，也被自己坚定地选择。</p>
+        <p class="card-sign">—— 专程写给你</p>
+      </article>
+      <button type="button" class="ghost-btn" id="replay">再看一次</button>
+    </section>
+
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <audio id="bgm" src="audio/moonlit.wav" loop preload="auto" playsinline></audio>
+    <button type="button" id="bgm-toggle" class="bgm-toggle" aria-label="关闭背景音乐" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="icon-on" d="M4 9v6h3.5L12 19V5L7.5 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zm-2.5-7.1v2.07A6.5 6.5 0 0 1 20 12a6.5 6.5 0 0 1-6 6.03v2.07A8.5 8.5 0 0 0 22 12a8.5 8.5 0 0 0-8-8.1z"/>
+        <path class="icon-off" d="M4 9v6h3.5L12 19V5L7.5 9H4zm11.8-2.2 1.4 1.4L15.4 10l1.8 1.8-1.4 1.4L14 11.4l-1.8 1.8-1.4-1.4 1.8-1.8-1.8-1.8 1.4-1.4 1.8 1.8 1.8-1.8z"/>
+      </svg>
+    </button>
+  </div>
+  <script src="js/app.js"></script>
+</body>
+</html>
