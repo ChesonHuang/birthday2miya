@@ -21,20 +21,18 @@
     <div id="moon" aria-hidden="true">
       <svg viewBox="0 0 200 200">
         <defs>
-          <radialGradient id="moonGlow" cx="38%" cy="32%" r="68%">
-            <stop offset="0%" stop-color="#fff8fb" />
-            <stop offset="38%" stop-color="#ffe4ef" />
-            <stop offset="72%" stop-color="#f7c4d4" />
-            <stop offset="100%" stop-color="#e8a0b8" />
+          <radialGradient id="crescentLit" cx="22%" cy="38%" r="78%">
+            <stop offset="0%" stop-color="#f3efe6" />
+            <stop offset="38%" stop-color="#d5cbb8" />
+            <stop offset="100%" stop-color="#9e9480" />
           </radialGradient>
-          <filter id="moonSoft">
-            <feGaussianBlur stdDeviation="0.6" />
-          </filter>
+          <mask id="crescentMask">
+            <rect width="200" height="200" fill="#000" />
+            <circle cx="100" cy="100" r="88" fill="#fff" />
+            <circle cx="78" cy="98" r="84" fill="#000" />
+          </mask>
         </defs>
-        <circle cx="100" cy="100" r="88" fill="url(#moonGlow)" />
-        <ellipse cx="72" cy="78" rx="16" ry="12" fill="#f3c5d4" opacity=".28" />
-        <ellipse cx="118" cy="108" rx="22" ry="16" fill="#e8a8bc" opacity=".18" />
-        <ellipse cx="86" cy="128" rx="10" ry="8" fill="#de90aa" opacity=".2" />
+        <circle cx="100" cy="100" r="88" fill="url(#crescentLit)" mask="url(#crescentMask)" />
       </svg>
     </div>
     <div id="petals" aria-hidden="true"></div>
@@ -140,7 +138,7 @@
 
     <div class="vignette" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
-    <audio id="bgm" src="audio/moonlit.wav" loop preload="auto" playsinline></audio>
+    <audio id="bgm" src="audio/happy-birthday.wav?v=miya" loop preload="auto" playsinline></audio>
     <button type="button" id="bgm-toggle" class="bgm-toggle" aria-label="关闭背景音乐" aria-pressed="false">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path class="icon-on" d="M4 9v6h3.5L12 19V5L7.5 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zm-2.5-7.1v2.07A6.5 6.5 0 0 1 20 12a6.5 6.5 0 0 1-6 6.03v2.07A8.5 8.5 0 0 0 22 12a8.5 8.5 0 0 0-8-8.1z"/>

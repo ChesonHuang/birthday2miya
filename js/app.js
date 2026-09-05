@@ -92,16 +92,26 @@
   function spawnPetals() {
     const box = $("#petals");
     box.innerHTML = "";
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 22; i++) {
       const el = document.createElement("span");
-      el.className = Math.random() < 0.42 ? "heart-fall" : "petal";
-      el.style.left = `${Math.random() * 100}%`;
+      const roll = Math.random();
+      if (roll < 0.45) {
+        el.className = "cherry-fall";
+        el.style.left = `${28 + Math.random() * 44}%`;
+      } else if (roll < 0.75) {
+        el.className = "petal";
+        el.style.left = `${Math.random() * 100}%`;
+      } else {
+        el.className = "heart-fall";
+        el.style.left = `${Math.random() * 100}%`;
+      }
       el.style.setProperty("--drift", `${(Math.random() * 80 - 40).toFixed(0)}px`);
       el.style.animationDuration = `${9 + Math.random() * 10}s`;
       el.style.animationDelay = `${Math.random() * 8}s`;
+      const scale = 0.55 + Math.random() * 0.75;
       el.style.transform = el.className === "heart-fall"
-        ? `rotate(45deg) scale(${0.55 + Math.random() * 0.7})`
-        : `scale(${0.6 + Math.random() * 0.7})`;
+        ? `rotate(45deg) scale(${scale})`
+        : `scale(${scale})`;
       box.appendChild(el);
     }
   }
